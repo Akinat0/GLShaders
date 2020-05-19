@@ -5,6 +5,7 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include <memory.h>
 
 #include <GL/glew.h>
 
@@ -23,6 +24,7 @@ public:
         // ensures ifstream objects can throw exceptions:
         vShaderFile.exceptions ( std::ifstream::badbit );
         fShaderFile.exceptions ( std::ifstream::badbit );
+                
         try
         {
             // Open files
