@@ -3,7 +3,8 @@
 #include "TriangleExample.h"
 #include "TextureExample.h"
 #include "TransformationExample.h"
+#include "ProjectionExample.h"
 
 int main(){
-    return TransformationExample().Start();
+    return ProjectionExample().Start();
 }

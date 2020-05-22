@@ -56,8 +56,10 @@ class TransformationExample{
         
         glViewport(0, 0, screenWidth, screenHeight);
         
-        //Get ready for alpha
+        //Get ready for depth
+        glEnable(GL_DEPTH_TEST);
         glEnable(GL_BLEND);
+        
         
         //TODO research what's it exactly
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -77,7 +79,7 @@ class TransformationExample{
             1, 2, 3  //Second triangle
         };
         
-        Shader shader("Resources/Shaders/Transformation/transformationTexture.vert", "Resources/Shaders/Transformation/transformationTexture.frag");
+        Shader shader("Resources/Shaders/Projection/projection.vert", "Resources/Shaders/Projection/projection.frag");
         
         GLuint VBO, VAO, EBO;
         
