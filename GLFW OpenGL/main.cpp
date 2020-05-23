@@ -4,7 +4,8 @@
 #include "TextureExample.h"
 #include "TransformationExample.h"
 #include "ProjectionExample.h"
+#include "CameraExample.h"
 
 int main(){
-    return ProjectionExample().Start();
+    return CameraExample().Start();
 }
