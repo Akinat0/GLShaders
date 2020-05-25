@@ -100,47 +100,47 @@ public:
         // Set up our vertex data (and buffer(s)) and attribute pointers
         GLfloat vertices[] =
         {
-            -0.5f, -0.5f, -0.5f,
-            0.5f, -0.5f, -0.5f,
-            0.5f,  0.5f, -0.5f,
-            0.5f,  0.5f, -0.5f,
-            -0.5f,  0.5f, -0.5f,
-            -0.5f, -0.5f, -0.5f,
-            
-            -0.5f, -0.5f,  0.5f,
-            0.5f, -0.5f,  0.5f,
-            0.5f,  0.5f,  0.5f,
-            0.5f,  0.5f,  0.5f,
-            -0.5f,  0.5f,  0.5f,
-            -0.5f, -0.5f,  0.5f,
-            
-            -0.5f,  0.5f,  0.5f,
-            -0.5f,  0.5f, -0.5f,
-            -0.5f, -0.5f, -0.5f,
-            -0.5f, -0.5f, -0.5f,
-            -0.5f, -0.5f,  0.5f,
-            -0.5f,  0.5f,  0.5f,
-            
-            0.5f,  0.5f,  0.5f,
-            0.5f,  0.5f, -0.5f,
-            0.5f, -0.5f, -0.5f,
-            0.5f, -0.5f, -0.5f,
-            0.5f, -0.5f,  0.5f,
-            0.5f,  0.5f,  0.5f,
-            
-            -0.5f, -0.5f, -0.5f,
-            0.5f, -0.5f, -0.5f,
-            0.5f, -0.5f,  0.5f,
-            0.5f, -0.5f,  0.5f,
-            -0.5f, -0.5f,  0.5f,
-            -0.5f, -0.5f, -0.5f,
-            
-            -0.5f,  0.5f, -0.5f,
-            0.5f,  0.5f, -0.5f,
-            0.5f,  0.5f,  0.5f,
-            0.5f,  0.5f,  0.5f,
-            -0.5f,  0.5f,  0.5f,
-            -0.5f,  0.5f, -0.5f
+           -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+           0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+           0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+           0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+           -0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+           -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+           
+           -0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
+           0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
+           0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
+           0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
+           -0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
+           -0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
+           
+           -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+           -0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+           -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+           -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+           -0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+           -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+           
+           0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+           0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+           0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+           0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+           0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+           0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+           
+           -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+           0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+           0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+           0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+           -0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+           -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+           
+           -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
+           0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
+           0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+           0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+           -0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+           -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f
         };
         
         glm::vec3 lightPos(1.2f, 1.0f, 2.0f);
@@ -155,8 +155,12 @@ public:
         glBufferData( GL_ARRAY_BUFFER, sizeof( vertices ), vertices, GL_STATIC_DRAW );
         
         // Position attribute
-        glVertexAttribPointer( 0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof( GLfloat ), ( GLvoid * )0 );
+        glVertexAttribPointer( 0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof( GLfloat ), ( GLvoid * )0 );
         glEnableVertexAttribArray( 0 );
+        
+        // Position attribute
+        glVertexAttribPointer( 1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof( GLfloat ), ( GLvoid * )(3 * sizeof(GLfloat)) );
+        glEnableVertexAttribArray( 1 );
         
         GLuint lightVAO;
         glGenVertexArrays( 1, &lightVAO );
@@ -168,7 +172,7 @@ public:
         glBufferData( GL_ARRAY_BUFFER, sizeof( vertices ), vertices, GL_STATIC_DRAW );
         
         // Position attribute
-        glVertexAttribPointer( 0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof( GLfloat ), ( GLvoid * )0 );
+        glVertexAttribPointer( 0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof( GLfloat ), ( GLvoid * )0 );
         glEnableVertexAttribArray( 0 );
         
         
@@ -216,9 +220,13 @@ public:
             litShader.Use();
             GLint objectColorLoc = glGetUniformLocation(litShader.Program, "Color");
             GLint lightColorLoc = glGetUniformLocation(litShader.Program, "Light");
+            GLint lightPosLoc = glGetUniformLocation(litShader.Program, "lightPos");
+            GLint viewPosLoc = glGetUniformLocation(litShader.Program, "viewPos");
             
             glUniform3f(objectColorLoc, 1.0f, 0.5f, 0.31f);
-            glUniform3f(lightColorLoc, 1.0f, 0.5f, 1.0f);
+            glUniform3f(lightColorLoc, 1.0f, 1.0f, 1.0f);
+            glUniform3f(lightPosLoc, lightPos.x, lightPos.y, lightPos.z);
+            glUniform3f(viewPosLoc, camera.GetPosition().x, camera.GetPosition().y, camera.GetPosition().z);
             
             glm::mat4 view = camera.GetViewMatrix();
             
