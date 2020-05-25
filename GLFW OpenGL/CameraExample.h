@@ -21,7 +21,7 @@
 #include "SOIL2/SOIL2.h"
 
 // Properties
-const GLuint WIDTH = 1400, HEIGHT = 800;
+const GLuint WIDTH = 900, HEIGHT = 700;
 int SCREEN_WIDTH, SCREEN_HEIGHT;
 
 // Function prototypes
@@ -42,7 +42,6 @@ GLfloat lastFrame = 0.0f;
 
 class CameraExample
 {
-    
 public:
     int Start(){
         // Init GLFW
@@ -95,111 +94,108 @@ public:
         glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
         
         // Setup and compile our shaders
-        Shader shader( "Resources/Shaders/Projection/projection.vert", "Resources/Shaders/Projection/projection.frag" );
+        Shader lightShader( "Resources/Shaders/Light/light.vert", "Resources/Shaders/Light/light.frag" );
+        Shader litShader( "Resources/Shaders/Light/lit.vert", "Resources/Shaders/Light/lit.frag" );
         
         // Set up our vertex data (and buffer(s)) and attribute pointers
         GLfloat vertices[] =
         {
-            -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
-            0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
-            0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-            0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-            -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-            -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+            -0.5f, -0.5f, -0.5f,
+            0.5f, -0.5f, -0.5f,
+            0.5f,  0.5f, -0.5f,
+            0.5f,  0.5f, -0.5f,
+            -0.5f,  0.5f, -0.5f,
+            -0.5f, -0.5f, -0.5f,
             
-            -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-            0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-            0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-            0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-            -0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
-            -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+            -0.5f, -0.5f,  0.5f,
+            0.5f, -0.5f,  0.5f,
+            0.5f,  0.5f,  0.5f,
+            0.5f,  0.5f,  0.5f,
+            -0.5f,  0.5f,  0.5f,
+            -0.5f, -0.5f,  0.5f,
             
-            -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-            -0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-            -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-            -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-            -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-            -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+            -0.5f,  0.5f,  0.5f,
+            -0.5f,  0.5f, -0.5f,
+            -0.5f, -0.5f, -0.5f,
+            -0.5f, -0.5f, -0.5f,
+            -0.5f, -0.5f,  0.5f,
+            -0.5f,  0.5f,  0.5f,
             
-            0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-            0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-            0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-            0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-            0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-            0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+            0.5f,  0.5f,  0.5f,
+            0.5f,  0.5f, -0.5f,
+            0.5f, -0.5f, -0.5f,
+            0.5f, -0.5f, -0.5f,
+            0.5f, -0.5f,  0.5f,
+            0.5f,  0.5f,  0.5f,
             
-            -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-            0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
-            0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-            0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-            -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-            -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+            -0.5f, -0.5f, -0.5f,
+            0.5f, -0.5f, -0.5f,
+            0.5f, -0.5f,  0.5f,
+            0.5f, -0.5f,  0.5f,
+            -0.5f, -0.5f,  0.5f,
+            -0.5f, -0.5f, -0.5f,
             
-            -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-            0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-            0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-            0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-            -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
-            -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
+            -0.5f,  0.5f, -0.5f,
+            0.5f,  0.5f, -0.5f,
+            0.5f,  0.5f,  0.5f,
+            0.5f,  0.5f,  0.5f,
+            -0.5f,  0.5f,  0.5f,
+            -0.5f,  0.5f, -0.5f
         };
         
-        glm::vec3 cubePositions[] =
-        {
-            glm::vec3( 0.0f, 0.0f, 0.0f ),
-            glm::vec3( 2.0f, 5.0f, -15.0f ),
-            glm::vec3( -1.5f, -2.2f, -2.5f ),
-            glm::vec3( -3.8f, -2.0f, -12.3f ),
-            glm::vec3( 2.4f, -0.4f, -3.5f ),
-            glm::vec3( -1.7f, 3.0f, -7.5f ),
-            glm::vec3( 1.3f, -2.0f, -2.5f ),
-            glm::vec3( 1.5f, 2.0f, -2.5f ),
-            glm::vec3( 1.5f, 0.2f, -1.5f ),
-            glm::vec3( -1.3f, 1.0f, -1.5f )
-        };
-        
-        glm::vec3 cubeRotations[10];
-        
-        //Get random rotation for each vector
-        for(int i = 0; i < 10; i++){
-            cubeRotations[i] = glm::vec3(static_cast <float> (rand()) / static_cast <float> (RAND_MAX), static_cast <float> (rand()) / static_cast <float> (RAND_MAX), static_cast <float> (rand()) / static_cast <float> (RAND_MAX));
-        }
-        
-        GLuint VBO, VAO;
-        glGenVertexArrays( 1, &VAO );
+        glm::vec3 lightPos(1.2f, 1.0f, 2.0f);
+    
+        GLuint VBO, boxVAO;
+        glGenVertexArrays( 1, &boxVAO );
         glGenBuffers( 1, &VBO );
         // Bind our Vertex Array Object first, then bind and set our buffers and pointers.
-        glBindVertexArray( VAO );
+        glBindVertexArray( boxVAO );
         
         glBindBuffer( GL_ARRAY_BUFFER, VBO );
         glBufferData( GL_ARRAY_BUFFER, sizeof( vertices ), vertices, GL_STATIC_DRAW );
         
         // Position attribute
-        glVertexAttribPointer( 0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof( GLfloat ), ( GLvoid * )0 );
+        glVertexAttribPointer( 0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof( GLfloat ), ( GLvoid * )0 );
         glEnableVertexAttribArray( 0 );
-        // TexCoord attribute
-        glVertexAttribPointer( 2, 2, GL_FLOAT, GL_FALSE, 5 * sizeof( GLfloat ), ( GLvoid * )( 3 * sizeof( GLfloat ) ) );
-        glEnableVertexAttribArray( 2 );
+        
+        GLuint lightVAO;
+        glGenVertexArrays( 1, &lightVAO );
+        glGenBuffers( 1, &VBO );
+        // Bind our Vertex Array Object first, then bind and set our buffers and pointers.
+        glBindVertexArray( lightVAO );
+        
+        glBindBuffer( GL_ARRAY_BUFFER, VBO );
+        glBufferData( GL_ARRAY_BUFFER, sizeof( vertices ), vertices, GL_STATIC_DRAW );
+        
+        // Position attribute
+        glVertexAttribPointer( 0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof( GLfloat ), ( GLvoid * )0 );
+        glEnableVertexAttribArray( 0 );
+        
         
         glBindVertexArray( 0 ); // Unbind VAO
         
-        // Load and create a texture
-        GLuint texture;
-        // --== TEXTURE == --
-        glGenTextures( 1, &texture );
-        glBindTexture( GL_TEXTURE_2D, texture ); // All upcoming GL_TEXTURE_2D operations now have effect on our texture object
-        // Set our texture parameters
-        glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT );
-        glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT );
-        // Set texture filtering
-        glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
-        glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
-        // Load, create texture and generate mipmaps
-        int width, height;
-        unsigned char *image = SOIL_load_image( "Resources/Images/night_view.jpg", &width, &height, 0, SOIL_LOAD_RGB );
-        glTexImage2D( GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image );
-        glGenerateMipmap( GL_TEXTURE_2D );
-        SOIL_free_image_data( image );
-        glBindTexture( GL_TEXTURE_2D, 0 ); // Unbind texture when done, so we won't accidentily mess up our texture.
+        {
+//        // Load and create a texture
+//        GLuint texture;
+//        // --== TEXTURE == --
+//        glGenTextures( 1, &texture );
+//        glBindTexture( GL_TEXTURE_2D, texture ); // All upcoming GL_TEXTURE_2D operations now have effect on our texture object
+//        // Set our texture parameters
+//        glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT );
+//        glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT );
+//        // Set texture filtering
+//        glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
+//        glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
+//        // Load, create texture and generate mipmaps
+//        int width, height;
+//        unsigned char *image = SOIL_load_image( "Resources/Images/night_view.jpg", &width, &height, 0, SOIL_LOAD_RGB );
+//        glTexImage2D( GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image );
+//        glGenerateMipmap( GL_TEXTURE_2D );
+//        SOIL_free_image_data( image );
+//        glBindTexture( GL_TEXTURE_2D, 0 ); // Unbind texture when done, so we won't accidentily mess up our texture.
+        }
+        
+        glm::mat4 projection = glm::perspective(camera.GetZoom(), (GLfloat)(SCREEN_WIDTH/SCREEN_HEIGHT), 0.1f, 1000.0f);
         
         // Game loop
         while( !glfwWindowShouldClose( window ) )
@@ -214,54 +210,53 @@ public:
             DoMovement( );
             
             // Clear the colorbuffer
-            glClearColor( 0.2f, 0.3f, 0.3f, 1.0f );
+            glClearColor( 0.1f, 0.1f, 0.1f, 1.0f );
             glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
             
-            shader.Use( );
+            litShader.Use();
+            GLint objectColorLoc = glGetUniformLocation(litShader.Program, "Color");
+            GLint lightColorLoc = glGetUniformLocation(litShader.Program, "Light");
             
-            // Bind Textures using texture units
-            glActiveTexture( GL_TEXTURE0 );
-            glBindTexture( GL_TEXTURE_2D, texture );
-            glUniform1i( glGetUniformLocation( shader.Program, "mainTexture" ), 0 );
+            glUniform3f(objectColorLoc, 1.0f, 0.5f, 0.31f);
+            glUniform3f(lightColorLoc, 1.0f, 0.5f, 1.0f);
             
-            glm::mat4 projection;
-            projection = glm::perspective(camera.GetZoom( ), (GLfloat)SCREEN_WIDTH/(GLfloat)SCREEN_HEIGHT, 0.1f, 1000.0f);
+            glm::mat4 view = camera.GetViewMatrix();
             
-            // Create camera transformation
-            glm::mat4 view;
-            view = camera.GetViewMatrix( );
+            GLint modelLoc = glGetUniformLocation(litShader.Program, "model");
+            GLint viewLoc = glGetUniformLocation(litShader.Program, "view");
+            GLint projectionLoc = glGetUniformLocation(litShader.Program, "projection");
+            
+            glBindVertexArray(boxVAO);
+            glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(glm::mat4(1)));
+            glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+            glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
+            glDrawArrays(GL_TRIANGLES, 0, 36);
+            glBindVertexArray(0);
+            
+            lightShader.Use();
 
-            // Get the uniform locations
-            GLint modelLoc = glGetUniformLocation( shader.Program, "model" );
-            GLint viewLoc = glGetUniformLocation( shader.Program, "view" );
-            GLint projLoc = glGetUniformLocation( shader.Program, "projection" );
+            modelLoc = glGetUniformLocation(lightShader.Program, "model");
+            viewLoc = glGetUniformLocation(lightShader.Program, "view");
+            projectionLoc = glGetUniformLocation(lightShader.Program, "projection");
             
-            // Pass the matrices to the shader
-            glUniformMatrix4fv( viewLoc, 1, GL_FALSE, glm::value_ptr( view ) );
-            glUniformMatrix4fv( projLoc, 1, GL_FALSE, glm::value_ptr( projection ) );
+            glBindVertexArray(boxVAO);
             
-            glBindVertexArray( VAO );
+            glm::mat4 model(1);
+            model = glm::translate(model, lightPos);
+            model = glm::scale(model, glm::vec3(0.2f));
             
-            for( GLuint i = 0; i < 10; i++ )
-            {
-                // Calculate the model matrix for each object and pass it to shader before drawing
-                glm::mat4 model(1);
-                model = glm::translate( model, cubePositions[i] );
-//                GLfloat angle = 20.0f * i;
-                model = glm::rotate(model, currentFrame, cubeRotations[i] );
-                glUniformMatrix4fv( modelLoc, 1, GL_FALSE, glm::value_ptr( model ) );
-                
-                glDrawArrays( GL_TRIANGLES, 0, 36 );
-            }
-            
-            glBindVertexArray( 0 );
+            glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+            glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+            glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
+            glDrawArrays(GL_TRIANGLES, 0, 36);
+            glBindVertexArray(0);
             
             // Swap the buffers
             glfwSwapBuffers( window );
         }
         
         // Properly de-allocate all resources once they've outlived their purpose
-        glDeleteVertexArrays( 1, &VAO );
+        glDeleteVertexArrays( 1, &boxVAO );
         glDeleteBuffers( 1, &VBO );
         glfwTerminate( );
         
