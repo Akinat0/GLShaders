@@ -61,6 +61,10 @@ public:
         return glm::lookAt( this->position, this->position + this->front, this->up );
     }
     
+    glm::vec3 GetForward(){
+        return this->front;
+    }
+    
     // Processes input received from any keyboard-like input system. Accepts input parameter in the form of camera defined ENUM (to abstract it from windowing systems)
     void ProcessKeyboard( Camera_Movement direction, GLfloat deltaTime )
     {
