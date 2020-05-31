@@ -144,6 +144,20 @@ public:
            -0.5f,  0.5f, -0.5f,    0.0f,  1.0f,  0.0f,     0.0f,  1.0f
         };
         
+        // Positions all containers
+        glm::vec3 cubePositions[] = {
+            glm::vec3(  0.0f,   0.0f,   0.0f),
+            glm::vec3(  2.0f,   5.0f,   -15.0f),
+            glm::vec3(  -1.5f,  -2.2f,  -2.5f),
+            glm::vec3(  -3.8f,  -2.0f,  -12.3f),
+            glm::vec3(  2.4f,   -0.4f,  -3.5f),
+            glm::vec3(  -1.7f,  3.0f,   -7.5f),
+            glm::vec3(  1.3f,   -2.0f,  -2.5f),
+            glm::vec3(  1.5f,   2.0f,   -2.5f),
+            glm::vec3(  1.5f,   0.2f,   -1.5f),
+            glm::vec3(  -1.3f,  1.0f,   -1.5f)
+        };
+        
         glm::vec3 lightPos(1.2f, 1.0f, 2.0f);
     
         GLuint VBO, boxVAO;
@@ -167,19 +181,21 @@ public:
         glVertexAttribPointer( 2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof( GLfloat ), ( GLvoid * )(6 * sizeof(GLfloat)) );
         glEnableVertexAttribArray( 2 );
         
-        GLuint lightVAO;
-        glGenVertexArrays( 1, &lightVAO );
-        glGenBuffers( 1, &VBO );
+    
         
-        // Bind our Vertex Array Object first, then bind and set our buffers and pointers.
-        glBindVertexArray( lightVAO );
-        
-        glBindBuffer( GL_ARRAY_BUFFER, VBO );
-        glBufferData( GL_ARRAY_BUFFER, sizeof( vertices ), vertices, GL_STATIC_DRAW );
+//        GLuint lightVAO;
+//        glGenVertexArrays( 1, &lightVAO );
+//        glGenBuffers( 1, &VBO );
+//
+//        // Bind our Vertex Array Object first, then bind and set our buffers and pointers.
+//        glBindVertexArray( lightVAO );
+//
+//        glBindBuffer( GL_ARRAY_BUFFER, VBO );
+//        glBufferData( GL_ARRAY_BUFFER, sizeof( vertices ), vertices, GL_STATIC_DRAW );
         
         // Position attribute
-        glVertexAttribPointer( 0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof( GLfloat ), ( GLvoid * )0 );
-        glEnableVertexAttribArray( 0 );
+//        glVertexAttribPointer( 0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof( GLfloat ), ( GLvoid * )0 );
+//        glEnableVertexAttribArray( 0 );
         
         GLuint diffuseMap, specularMap;
         glGenTextures( 1, &diffuseMap );
@@ -229,10 +245,10 @@ public:
             deltaTime = currentFrame - lastFrame;
             lastFrame = currentFrame;
             
-            if(currentFrame > 15.0f){
-                lightPos.x -= 0.0025f;
-                lightPos.z -= 0.0025f;
-            }
+//            if(currentFrame > 15.0f){
+//                lightPos.x -= 0.0025f;
+//                lightPos.z -= 0.0025f;
+//            }
             
             // Check and call events
             glfwPollEvents( );
@@ -243,7 +259,7 @@ public:
             glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
             
             litShader.Use();
-            GLint lightPosLoc = glGetUniformLocation(litShader.Program, "light.position");
+            GLint lightDirLoc = glGetUniformLocation(litShader.Program, "light.direction");
             GLint viewPosLoc = glGetUniformLocation(litShader.Program, "viewPos");
             
             glUniform3f(glGetUniformLocation(litShader.Program, "light.ambient"), 0.2f, 0.2f, 0.2f);
@@ -256,7 +272,7 @@ public:
             
             glUniform1f(glGetUniformLocation(litShader.Program, "material.shininess"), 32.0f);
 
-            glUniform3f(lightPosLoc, lightPos.x, lightPos.y, lightPos.z);
+            glUniform3f(lightDirLoc, -0.2f, -1.0f, -0.3f);
             glUniform3f(viewPosLoc, camera.GetPosition().x, camera.GetPosition().y, camera.GetPosition().z);
             
             glm::mat4 view = camera.GetViewMatrix();
@@ -274,29 +290,42 @@ public:
             glBindTexture( GL_TEXTURE_2D, specularMap );
             
             glBindVertexArray(boxVAO);
-            glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(glm::mat4(1)));
+            
+            glm::mat4 model;
+            
             glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
             glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-            glBindVertexArray(0);
             
-            lightShader.Use();
+            for (GLint i=0; i < 10; i++){
+                model = glm::mat4(1);
+                model = glm::translate(model, cubePositions[i]);
+                model = glm::rotate(model, 20.0f * i, glm::vec3(1.0f, 0.5f, 0.3f));
+                glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+                glDrawArrays(GL_TRIANGLES, 0, 36);
+            }
+            
+//            glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(glm::mat4(1)));
+            
+//            glDrawArrays(GL_TRIANGLES, 0, 36);
+            glBindVertexArray(0);
 
-            modelLoc = glGetUniformLocation(lightShader.Program, "model");
-            viewLoc = glGetUniformLocation(lightShader.Program, "view");
-            projectionLoc = glGetUniformLocation(lightShader.Program, "projection");
-            
-            glBindVertexArray(boxVAO);
-            
-            glm::mat4 model(1);
-            model = glm::translate(model, lightPos);
-            model = glm::scale(model, glm::vec3(0.2f));
-            
-            glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-            glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
-            glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-            glBindVertexArray(0);
+//            lightShader.Use();
+//
+//            modelLoc = glGetUniformLocation(lightShader.Program, "model");
+//            viewLoc = glGetUniformLocation(lightShader.Program, "view");
+//            projectionLoc = glGetUniformLocation(lightShader.Program, "projection");
+//
+//            glBindVertexArray(boxVAO);
+//
+//            glm::mat4 model(1);
+//            model = glm::translate(model, lightPos);
+//            model = glm::scale(model, glm::vec3(0.2f));
+//
+//            glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+//            glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+//            glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
+//            glDrawArrays(GL_TRIANGLES, 0, 36);
+//            glBindVertexArray(0);
             
             // Swap the buffers
             glfwSwapBuffers( window );
