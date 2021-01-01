@@ -1,11 +1,7 @@
 #include <iostream>
 
-#include "TriangleExample.h"
-#include "TextureExample.h"
-#include "TransformationExample.h"
-#include "ProjectionExample.h"
-#include "CameraExample.h"
+#include "MeshExample.h"
 
 int main(){
-    return CameraExample().Start();
+    return MeshExample().Start();
 }

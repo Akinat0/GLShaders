@@ -17,6 +17,8 @@
 		652B311A2472C401004A42E4 /* Resources in CopyFiles */ = {isa = PBXBuildFile; fileRef = 652B310E2472C141004A42E4 /* Resources */; };
 		652B31222472C6A1004A42E4 /* libGLEW.2.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 652B31212472C6A1004A42E4 /* libGLEW.2.1.0.dylib */; };
 		652B31242472C6B6004A42E4 /* libglfw.3.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 652B31232472C6B6004A42E4 /* libglfw.3.3.dylib */; };
+		653927C5259F59DB00B8CB12 /* libassimp.5.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 653927C4259F59DB00B8CB12 /* libassimp.5.0.0.dylib */; };
+		653927C6259F59DB00B8CB12 /* libassimp.5.0.0.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 653927C4259F59DB00B8CB12 /* libassimp.5.0.0.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,6 +39,17 @@
 			files = (
 				652B311A2472C401004A42E4 /* Resources in CopyFiles */,
 			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		653927C7259F59DB00B8CB12 /* Embed Libraries */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				653927C6259F59DB00B8CB12 /* libassimp.5.0.0.dylib in Embed Libraries */,
+			);
+			name = "Embed Libraries";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -495,6 +508,10 @@
 		652B31232472C6B6004A42E4 /* libglfw.3.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.3.dylib; path = ../../../../../usr/local/Cellar/glfw/3.3.2/lib/libglfw.3.3.dylib; sourceTree = "<group>"; };
 		6533DC6A2478EDBC007B4A3E /* Camera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
 		6533DC6B2478EE52007B4A3E /* CameraExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraExample.h; sourceTree = "<group>"; };
+		653927C1259F416500B8CB12 /* Mesh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Mesh.h; sourceTree = "<group>"; };
+		653927C2259F421C00B8CB12 /* MeshExample.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MeshExample.h; sourceTree = "<group>"; };
+		653927C4259F59DB00B8CB12 /* libassimp.5.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libassimp.5.0.0.dylib; path = ../../../../../usr/local/Cellar/assimp/5.0.1/lib/libassimp.5.0.0.dylib; sourceTree = "<group>"; };
+		653927C8259F5B7A00B8CB12 /* Model.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
 		6558CA272477A19800BDDFB1 /* ProjectionExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectionExample.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -505,6 +522,7 @@
 			files = (
 				652B31242472C6B6004A42E4 /* libglfw.3.3.dylib in Frameworks */,
 				652B31222472C6A1004A42E4 /* libGLEW.2.1.0.dylib in Frameworks */,
+				653927C5259F59DB00B8CB12 /* libassimp.5.0.0.dylib in Frameworks */,
 				652B31142472C369004A42E4 /* OpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1039,6 +1057,9 @@
 				650122D82473BC0A00FD21EE /* TextureExample.h */,
 				6533DC6B2478EE52007B4A3E /* CameraExample.h */,
 				6533DC6A2478EDBC007B4A3E /* Camera.h */,
+				653927C1259F416500B8CB12 /* Mesh.h */,
+				653927C2259F421C00B8CB12 /* MeshExample.h */,
+				653927C8259F5B7A00B8CB12 /* Model.h */,
 			);
 			path = "GLFW OpenGL";
 			sourceTree = "<group>";
@@ -1046,6 +1067,7 @@
 		652B31122472C368004A42E4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				653927C4259F59DB00B8CB12 /* libassimp.5.0.0.dylib */,
 				652B31232472C6B6004A42E4 /* libglfw.3.3.dylib */,
 				652B31212472C6A1004A42E4 /* libGLEW.2.1.0.dylib */,
 				652B31132472C369004A42E4 /* OpenGL.framework */,
@@ -1065,6 +1087,7 @@
 				652B30F224725A9A004A42E4 /* CopyFiles */,
 				652B31192472C3B3004A42E4 /* CopyFiles */,
 				650122D92473BD3400FD21EE /* ShellScript */,
+				653927C7259F59DB00B8CB12 /* Embed Libraries */,
 			);
 			buildRules = (
 			);
@@ -1262,6 +1285,7 @@
 					"$(inherited)",
 					/usr/local/Cellar/glew/2.1.0_1/lib,
 					/usr/local/Cellar/glfw/3.3.2/lib,
+					/usr/local/Cellar/assimp/5.0.1/lib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1276,6 +1300,7 @@
 					"$(inherited)",
 					/usr/local/Cellar/glew/2.1.0_1/lib,
 					/usr/local/Cellar/glfw/3.3.2/lib,
+					/usr/local/Cellar/assimp/5.0.1/lib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
