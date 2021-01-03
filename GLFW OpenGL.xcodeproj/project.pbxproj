@@ -512,6 +512,10 @@
 		653927C2259F421C00B8CB12 /* MeshExample.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MeshExample.h; sourceTree = "<group>"; };
 		653927C4259F59DB00B8CB12 /* libassimp.5.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libassimp.5.0.0.dylib; path = ../../../../../usr/local/Cellar/assimp/5.0.1/lib/libassimp.5.0.0.dylib; sourceTree = "<group>"; };
 		653927C8259F5B7A00B8CB12 /* Model.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
+		653927CC25A1EC8100B8CB12 /* GameObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameObject.h; sourceTree = "<group>"; };
+		653927CD25A1F15000B8CB12 /* ModelObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModelObject.h; sourceTree = "<group>"; };
+		653927CE25A203D300B8CB12 /* GameScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
+		653927CF25A208FA00B8CB12 /* GoliathGameScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoliathGameScene.h; sourceTree = "<group>"; };
 		6558CA272477A19800BDDFB1 /* ProjectionExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectionExample.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1060,6 +1064,10 @@
 				653927C1259F416500B8CB12 /* Mesh.h */,
 				653927C2259F421C00B8CB12 /* MeshExample.h */,
 				653927C8259F5B7A00B8CB12 /* Model.h */,
+				653927CC25A1EC8100B8CB12 /* GameObject.h */,
+				653927CD25A1F15000B8CB12 /* ModelObject.h */,
+				653927CE25A203D300B8CB12 /* GameScene.h */,
+				653927CF25A208FA00B8CB12 /* GoliathGameScene.h */,
 			);
 			path = "GLFW OpenGL";
 			sourceTree = "<group>";
@@ -1146,7 +1154,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "open -a Terminal \"`pwd`\"\n";
+			shellScript = "#open -a Terminal \"`pwd`\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

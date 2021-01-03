@@ -13,6 +13,12 @@
 #include "Camera.h"
 #include "Model.h"
 
+//Engine
+#include "GameObject.h"
+#include "ModelObject.h"
+#include "GameScene.h"
+#include "GoliathGameScene.h"
+
 // GLM Mathemtics
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -55,7 +61,7 @@ public:
             glfwWindowHint( GLFW_RESIZABLE, GL_FALSE );
             
             // Create a GLFWwindow object that we can use for GLFW's functions
-            GLFWwindow *window = glfwCreateWindow( WIDTH, HEIGHT, "LearnOpenGL", nullptr, nullptr );
+            GLFWwindow *window = glfwCreateWindow( WIDTH, HEIGHT, "Goliath", nullptr, nullptr );
             
             if ( nullptr == window )
             {
@@ -91,16 +97,13 @@ public:
             // OpenGL options
             glEnable( GL_DEPTH_TEST );
             
-            // Setup and compile our shaders
-            Shader shader( "Resources/Shaders/Model/modelLoading.vert", "Resources/Shaders/Model/modelLoading.frag" );
-            
-            // Load models
-            Model ourModel( "Resources/Models/nano_suit/nanosuit.obj" );
-            
+        
             // Draw in wireframe
             //glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
-            
+        
             glm::mat4 projection = glm::perspective( camera.GetZoom( ), ( float )SCREEN_WIDTH/( float )SCREEN_HEIGHT, 0.1f, 100.0f );
+        
+            GoliathGameScene gameScene(&camera, projection);
             
             // Game loop
             while( !glfwWindowShouldClose( window ) )
@@ -118,18 +121,8 @@ public:
                 glClearColor( 0.05f, 0.05f, 0.05f, 1.0f );
                 glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
                 
-                shader.Use( );
-                
-                glm::mat4 view = camera.GetViewMatrix( );
-                glUniformMatrix4fv( glGetUniformLocation( shader.Program, "projection" ), 1, GL_FALSE, glm::value_ptr( projection ) );
-                glUniformMatrix4fv( glGetUniformLocation( shader.Program, "view" ), 1, GL_FALSE, glm::value_ptr( view ) );
-                
-                // Draw the loaded model
-                glm::mat4 model(1);
-                model = glm::translate( model, glm::vec3( 0.0f, -1.75f, 0.0f ) ); // Translate it down a bit so it's at the center of the scene
-                model = glm::scale( model, glm::vec3( 0.2f, 0.2f, 0.2f ) );    // It's a bit too big for our scene, so scale it down
-                glUniformMatrix4fv( glGetUniformLocation( shader.Program, "model" ), 1, GL_FALSE, glm::value_ptr( model ) );
-                ourModel.Draw( shader );
+                gameScene.Update(deltaTime);
+                gameScene.Draw();
                 
                 // Swap the buffers
                 glfwSwapBuffers( window );

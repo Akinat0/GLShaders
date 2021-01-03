@@ -24,6 +24,7 @@ GLint TextureFromFile( const char *path, string directory );
 class Model
 {
 public:
+    
     /*  Functions   */
     // Constructor, expects a filepath to a 3D model.
     Model( GLchar *path )
@@ -32,8 +33,10 @@ public:
     }
     
     // Draws the model, and thus all its meshes
-    void Draw( Shader shader )
+    void Draw( Shader *shader )
     {
+        cout<<"Draw model, meshes amount " << meshes.size()<<endl;
+        
         for ( GLuint i = 0; i < this->meshes.size( ); i++ )
         {
             this->meshes[i].Draw( shader );
