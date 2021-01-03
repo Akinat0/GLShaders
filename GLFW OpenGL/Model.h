@@ -35,7 +35,7 @@ public:
     // Draws the model, and thus all its meshes
     void Draw( Shader *shader )
     {
-        cout<<"Draw model, meshes amount " << meshes.size()<<endl;
+//        cout<<"Draw model, meshes amount " << meshes.size()<<endl;
         
         for ( GLuint i = 0; i < this->meshes.size( ); i++ )
         {
