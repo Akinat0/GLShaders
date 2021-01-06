@@ -15,6 +15,9 @@ public:
     }
     
     void Draw(glm::mat4 view, glm::mat4 projection) override {
+        
+        GameObject::Draw(view, projection);
+        
         shader->Use();
         
         //Pass mvp to gl
@@ -25,7 +28,7 @@ public:
         geometry->Draw(shader);
     }
     
-private:
+protected:
     Model *geometry;
     Shader *shader;
 };

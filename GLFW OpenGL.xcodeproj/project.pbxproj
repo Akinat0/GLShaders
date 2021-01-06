@@ -517,6 +517,10 @@
 		653927CE25A203D300B8CB12 /* GameScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
 		653927CF25A208FA00B8CB12 /* GoliathGameScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoliathGameScene.h; sourceTree = "<group>"; };
 		653927D025A21FD600B8CB12 /* GoliathGameObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoliathGameObject.h; sourceTree = "<group>"; };
+		653927D125A228EA00B8CB12 /* LightObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LightObject.h; sourceTree = "<group>"; };
+		653927D225A28ADB00B8CB12 /* LitModelObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LitModelObject.h; sourceTree = "<group>"; };
+		653927D325A28B8300B8CB12 /* LitShader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LitShader.h; sourceTree = "<group>"; };
+		653927D425A5BE7A00B8CB12 /* LightData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LightData.h; sourceTree = "<group>"; };
 		6558CA272477A19800BDDFB1 /* ProjectionExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectionExample.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1070,6 +1074,10 @@
 				653927CE25A203D300B8CB12 /* GameScene.h */,
 				653927CF25A208FA00B8CB12 /* GoliathGameScene.h */,
 				653927D025A21FD600B8CB12 /* GoliathGameObject.h */,
+				653927D125A228EA00B8CB12 /* LightObject.h */,
+				653927D225A28ADB00B8CB12 /* LitModelObject.h */,
+				653927D325A28B8300B8CB12 /* LitShader.h */,
+				653927D425A5BE7A00B8CB12 /* LightData.h */,
 			);
 			path = "GLFW OpenGL";
 			sourceTree = "<group>";
@@ -1156,7 +1164,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#open -a Terminal \"`pwd`\"\n";
+			shellScript = "open -a Terminal \"`pwd`\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
