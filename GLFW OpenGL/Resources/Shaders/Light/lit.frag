@@ -23,6 +23,12 @@ struct Light{
     float quadratic;
 };
 
+struct Fog{
+    vec3 color;
+    float minDist;
+    float maxDist;
+};
+
 out vec4 color;
 
 in vec2 TexCoords;
@@ -33,6 +39,7 @@ uniform vec3 viewPos;
 uniform vec3 Color;
 uniform Material material;
 uniform Light lights[5];
+uniform Fog fog;
 
 void main(){
 
@@ -63,16 +70,19 @@ void main(){
         float attenuation = 1.0f / ( lights[i].constant + lights[i].linear * dist + lights[i].quadratic * dist * dist);
 
         specular *= attenuation;
-//    //    ambient *= attenuation;
-//    //    diffuse *= attenuation;
         
-//        result += ambient + diffuse + specular;
-        result += diffuse + specular;
+        result += ambient + diffuse + specular;
         
     }
     
+    //Fog
+    float dist = abs(viewPos.z - FragPos.z);
 
+    float fogFactor = (fog.maxDist - dist)/(fog.maxDist - fog.minDist);
+    
+    fogFactor = clamp(fogFactor, 0, 1);
+
+    result = mix(fog.color, result, fogFactor);
     
     color = vec4(result, 1.0f);
-//    color = vec4(1.0f);
 }

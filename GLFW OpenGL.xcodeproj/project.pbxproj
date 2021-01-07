@@ -521,6 +521,7 @@
 		653927D225A28ADB00B8CB12 /* LitModelObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LitModelObject.h; sourceTree = "<group>"; };
 		653927D325A28B8300B8CB12 /* LitShader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LitShader.h; sourceTree = "<group>"; };
 		653927D425A5BE7A00B8CB12 /* LightData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LightData.h; sourceTree = "<group>"; };
+		653927D525A613DA00B8CB12 /* FogData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FogData.h; sourceTree = "<group>"; };
 		6558CA272477A19800BDDFB1 /* ProjectionExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectionExample.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1078,6 +1079,7 @@
 				653927D225A28ADB00B8CB12 /* LitModelObject.h */,
 				653927D325A28B8300B8CB12 /* LitShader.h */,
 				653927D425A5BE7A00B8CB12 /* LightData.h */,
+				653927D525A613DA00B8CB12 /* FogData.h */,
 			);
 			path = "GLFW OpenGL";
 			sourceTree = "<group>";
@@ -1164,7 +1166,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "open -a Terminal \"`pwd`\"\n";
+			shellScript = "#open -a Terminal \"`pwd`\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
