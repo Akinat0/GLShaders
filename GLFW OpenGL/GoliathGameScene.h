@@ -7,6 +7,7 @@
 #include "GoliathGameObject.h"
 #include "GameScene.h"
 #include "LightObject.h"
+#include "CellShadedModelObject.h"
 
 
 class GoliathGameScene : public GameScene{
@@ -14,6 +15,9 @@ public:
     GoliathGameScene(Camera *camera, glm::mat4 projection) : GameScene(camera, projection){
 
         goliath = new GoliathGameObject(camera);
+        
+        toonGoliath = new CellShadedModelObject(new Model("Resources/Models/nano_suit/nanosuit.obj"), camera);
+        toonGoliath->Scale(glm::vec3(0.2f, 0.2f, 0.2f));
         
         light1 = new LightObject(glm::vec3(0.2f, 0.5f, 1.0f));
         light1->Translate(glm::vec3(-15, 5, 0));
@@ -36,6 +40,7 @@ public:
         light5->Scale(glm::vec3(0.1f, 0.1f, 0.1f));
 
         this->gameObjects.push_back(goliath);
+//        this->gameObjects.push_back(toonGoliath);
         this->gameObjects.push_back(light1);
         this->gameObjects.push_back(light2);
         this->gameObjects.push_back(light3);
@@ -46,19 +51,27 @@ public:
     void Update(float deltaTime) override{
         GameScene :: Update(deltaTime);
 
-        goliath->Rotate(1*deltaTime, glm::vec3(0, 1, 0));
+        goliath->Rotate(0.2f*deltaTime, glm::vec3(0, 1, 0));
 //        sphere1->Rotate(1*deltaTime, glm::vec3(0, 1, 0));
 
         goliath->ClearLightData();
         goliath->AddLightData(light1->GetLightData());
-        goliath->AddLightData(light2->GetLightData());
+//        goliath->AddLightData(light2->GetLightData());
         goliath->AddLightData(light3->GetLightData());
-        goliath->AddLightData(light4->GetLightData());
-        goliath->AddLightData(light5->GetLightData());
+//        goliath->AddLightData(light4->GetLightData());
+//        goliath->AddLightData(light5->GetLightData());
+
+//        toonGoliath->ClearLightData();
+//        toonGoliath->AddLightData(light1->GetLightData());
+//        toonGoliath->AddLightData(light2->GetLightData());
+//        toonGoliath->AddLightData(light3->GetLightData());
+//        toonGoliath->AddLightData(light4->GetLightData());
+//        toonGoliath->AddLightData(light5->GetLightData());
     }
 
 private:
     GoliathGameObject* goliath;
+    CellShadedModelObject* toonGoliath;
     LightObject* light1;
     LightObject* light2;
     LightObject* light3;

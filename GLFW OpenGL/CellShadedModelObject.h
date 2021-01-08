@@ -1,18 +1,17 @@
 #pragma once
 
-#include "LitShader.h"
+#include "ToonShader.h"
 #include "LightData.h"
-#include "FogData.h"
 
-class LitModelObject : public ModelObject{
+class CellShadedModelObject : public ModelObject{
+
 public:
-    LitModelObject(Model *geometry, Camera *camera) : ModelObject(geometry, new LitShader()){
+    CellShadedModelObject(Model *geometry, Camera *camera) : ModelObject(geometry, new ToonShader()){
         this->camera = camera;
-        fogData = FogData();
     }
-    
+
     void Draw(glm::mat4 view, glm::mat4 projection) override {
-        
+
         shader->Use();
 
         for(int i=0; i<lightsData.size(); i++){
@@ -31,34 +30,21 @@ public:
             glUniform1f(glGetUniformLocation(shader->Program, ("lights[" + to_string(i) + "].intensity").c_str()), lightsData[i].Intensity);
         }
 
-        glUniform1f(glGetUniformLocation(shader->Program, "fog.minDist"), fogData.MinDist);
-        glUniform1f(glGetUniformLocation(shader->Program, "fog.maxDist"), fogData.MaxDist);
-        glUniform3fv(glGetUniformLocation(shader->Program, "fog.color"), 1, glm::value_ptr(fogData.Color));
-
         glUniform3fv(glGetUniformLocation(shader->Program, "viewPos"), 1, glm::value_ptr(camera->GetPosition()));
         glUniform1f(glGetUniformLocation(shader->Program, "material.shininess"), 60.0f);
-        
+
         ModelObject::Draw(view, projection);
     }
-    
+
     void ClearLightData(){
         lightsData.clear();
     }
-    
+
     void AddLightData(LightData lightData){
         lightsData.push_back(lightData);
     }
 
-    FogData GetFogData(){
-        return fogData;
-    }
-
-    void SetFogData(FogData fogData){
-        this->fogData = fogData;
-    }
-    
 protected:
     Camera *camera;
     vector<LightData> lightsData;
-    FogData fogData;
 };

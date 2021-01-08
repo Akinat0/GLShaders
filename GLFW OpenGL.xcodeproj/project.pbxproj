@@ -522,6 +522,8 @@
 		653927D325A28B8300B8CB12 /* LitShader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LitShader.h; sourceTree = "<group>"; };
 		653927D425A5BE7A00B8CB12 /* LightData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LightData.h; sourceTree = "<group>"; };
 		653927D525A613DA00B8CB12 /* FogData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FogData.h; sourceTree = "<group>"; };
+		653927D625A731CC00B8CB12 /* CellShadedModelObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CellShadedModelObject.h; sourceTree = "<group>"; };
+		653927D725A7327D00B8CB12 /* ToonShader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToonShader.h; sourceTree = "<group>"; };
 		6558CA272477A19800BDDFB1 /* ProjectionExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectionExample.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1080,6 +1082,8 @@
 				653927D325A28B8300B8CB12 /* LitShader.h */,
 				653927D425A5BE7A00B8CB12 /* LightData.h */,
 				653927D525A613DA00B8CB12 /* FogData.h */,
+				653927D625A731CC00B8CB12 /* CellShadedModelObject.h */,
+				653927D725A7327D00B8CB12 /* ToonShader.h */,
 			);
 			path = "GLFW OpenGL";
 			sourceTree = "<group>";
