@@ -4,8 +4,8 @@ struct FogData{
 
     FogData(){
         Color = glm::vec3(0.3,0.3,0.3);
-        MinDist = 10;
-        MaxDist = 30;
+        MinDist = 5;
+        MaxDist = 12;
     }
 
     FogData(glm::vec3 color, float minDist, float maxDist){

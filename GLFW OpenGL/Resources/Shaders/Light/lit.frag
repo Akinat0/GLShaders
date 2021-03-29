@@ -76,7 +76,7 @@ void main(){
     }
     
     //Fog
-    float dist = abs(viewPos.z - FragPos.z);
+    float dist = length(viewPos.xyz - FragPos.xyz);
 
     float fogFactor = (fog.maxDist - dist)/(fog.maxDist - fog.minDist);
     
